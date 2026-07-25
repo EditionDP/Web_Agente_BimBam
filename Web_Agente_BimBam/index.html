@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BimBam Buy - Centro de Soporte</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { 
+            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), url('https://unsplash.com') no-repeat center center fixed;
+            background-size: cover;
+            display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px;
+        }
+        .container { display: flex; width: 1000px; max-width: 100%; height: 650px; background: rgba(255, 255, 255, 0.06); backdrop-filter: blur(16px); border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1); overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+        .sidebar { width: 35%; background: rgba(15, 23, 42, 0.6); padding: 25px; border-right: 1px solid rgba(255, 255, 255, 0.1); display: flex; flex-direction: column; justify-content: space-between; }
+        .sidebar h2 { color: #f8fafc; font-size: 22px; margin-bottom: 5px; font-weight: 600; }
+        .sidebar p { color: #94a3b8; font-size: 13px; margin-bottom: 25px; }
+        .faq-box h3 { color: #cbd5e1; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+        .faq-item { background: rgba(255, 255, 255, 0.05); color: #e2e8f0; padding: 12px; border-radius: 10px; margin-bottom: 10px; font-size: 13.5px; cursor: pointer; border: 1px solid transparent; transition: all 0.2s; }
+        .faq-item:hover { background: rgba(59, 130, 246, 0.2); border-color: #3b82f6; }
+        .refresh-btn { background: #ef4444; color: white; border: none; padding: 12px; border-radius: 10px; font-weight: 600; cursor: pointer; width: 100%; transition: background 0.2s; }
+        .refresh-btn:hover { background: #dc2626; }
+        .chat-area { width: 65%; display: flex; flex-direction: column; background: rgba(30, 41, 59, 0.4); }
+        .chat-header { padding: 20px 25px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); display: flex; align-items: center; justify-content: space-between; }
+        .chat-header h1 { color: #ffffff; font-size: 20px; }
+        .status { display: flex; align-items: center; font-size: 12px; color: #4ade80; gap: 6px; }
+        .status::before { content: ''; width: 8px; height: 8px; background: #4ade80; border-radius: 50%; display: inline-block; }
+        .messages { flex: 1; padding: 25px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; }
+        .message { max-width: 80%; padding: 12px 16px; border-radius: 15px; font-size: 14.5px; line-height: 1.5; }
+        .message.bot { background: rgba(255, 255, 255, 0.08); color: #f1f5f9; align-self: flex-start; border-bottom-left-radius: 2px; border: 1px solid rgba(255, 255, 255, 0.05); }
+        .message.user { background: #2563eb; color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
+        .input-area { padding: 20px 25px; display: flex; gap: 12px; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+        .input-area input { flex: 1; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.1); padding: 14px; border-radius: 10px; color: white; font-size: 14.5px; outline: none; }
+        .input-area input:focus { border-color: #2563eb; }
+        .input-area button { background: #2563eb; color: white; border: none; padding: 0 25px; border-radius: 10px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+        .input-area button:hover { background: #1d4ed8; }
+
+        /* NUEVOS ESTILOS PARA LA ANIMACIÓN DE CARGA */
+        .typing-indicator { display: flex; gap: 4px; padding: 4px 0; justify-content: center; align-items: center; }
+        .typing-indicator span { width: 8px; height: 8px; background: #94a3b8; border-radius: 50%; display: inline-block; animation: bounce 1.3s infinite ease-in-out; }
+        .typing-indicator span:nth-child(2) { animation-delay: 0.15s; }
+        .typing-indicator span:nth-child(3) { animation-delay: 0.3s; }
+        @keyframes bounce {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-6px); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="sidebar">
+        <div>
+            <h2>BimBam Buy</h2>
+            <p>Asistente Inteligente de Garantías</p>
+            <div class="faq-box">
+                <h3>Consultas Frecuentes</h3>
+                <div class="faq-item" onclick="enviarSugerencia('¿Cuantos dias se demora una garantia?')">¿Cuánto demora una garantía?</div>
+                <div class="faq-item" onclick="enviarSugerencia('¿Qué pasa si mi producto llegó dañado por el transporte?')">¿Producto dañado en tránsito?</div>
+                <div class="faq-item" onclick="enviarSugerencia('¿Cuáles son los tiempos de respuesta del equipo técnico?')">Tiempos de respuesta técnicos</div>
+            </div>
+        </div>
+        <button class="refresh-btn" onclick="limpiarChat()">Limpiar Chat (Privacidad)</button>
+    </div>
+
+    <div class="chat-area">
+        <div class="chat-header">
+            <h1>Soporte Oficial</h1>
+            <div class="status" id="agent-status">Agente Activo</div>
+        </div>
+        <div class="messages" id="chat-messages">
+            <div class="message bot">¡Hola! Soy el asistente virtual de BimBam Buy. ¿En qué puedo ayudarte hoy respecto a tus productos o políticas de garantía?</div>
+        </div>
+        <div class="input-area">
+            <input type="text" id="user-input" placeholder="Escribe tu consulta aquí..." onkeypress="evaluarEnter(event)">
+            <button id="send-btn" onclick="enviarMensaje()">Enviar</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // URL Corregida: Apunta directamente a tu endpoint en PythonAnywhere con Flask
+    const URL_CHAT_OFICIAL = "https://pythonanywhere.com";
+    
+    async function enviarMensaje() {
+        const inputElement = document.getElementById('user-input');
+        const sendButton = document.getElementById('send-btn');
+        const statusElement = document.getElementById('agent-status');
+        const texto = inputElement.value.trim();
+        
+        if (!texto) return;
+
+        // 1. Mostrar mensaje del usuario y bloquear controles
+        agregarMensaje(texto, 'user');
+        inputElement.value = '';
+        inputElement.disabled = true;
+        sendButton.disabled = true;
+        statusElement.innerText = "Escribiendo...";
+        statusElement.style.color = "#3b82f6";
+
+        // 2. Insertar la animación de los tres puntitos titilando en la pantalla
+        const indicadorCarga = mostrarIndicadorCarga();
+
+        try {
+        // 2. Cambia API_URL aquí abajo también por el nuevo nombre:
+        const respuesta = await fetch(URL_CHAT_OFICIAL, { 
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ pregunta: texto })
+        });
+            const data = await respuesta.json();
+            
+            // 3. Remover animación e imprimir respuesta real de OpenRouter
+            indicadorCarga.remove();
+            agregarMensaje(data.respuesta, 'bot');
+        } catch (error) {
+            indicadorCarga.remove();
+            agregarMensaje("Lo siento, no pude conectarme con el servidor central en este momento.", 'bot');
+        } finally {
+            // 4. Desbloquear la interfaz para la siguiente pregunta
+            inputElement.disabled = false;
+            sendButton.disabled = false;
+            statusElement.innerText = "Agente Activo";
+            statusElement.style.color = "#4ade80";
+            inputElement.focus();
+        }
+    }
+
+    function agregarMensaje(texto, remitente) {
+        const contenedor = document.getElementById('chat-messages');
+        const div = document.createElement('div');
+        div.className = `message ${remitente}`;
+        div.innerText = texto;
+        contenedor.appendChild(div);
+        contenedor.scrollTop = contenedor.scrollHeight;
+    }
+
+    function mostrarIndicadorCarga() {
+        const contenedor = document.getElementById('chat-messages');
+        const div = document.createElement('div');
+        div.className = 'message bot';
+        div.innerHTML = `
+            <div class="typing-indicator">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        `;
+        contenedor.appendChild(div);
+        contenedor.scrollTop = contenedor.scrollHeight;
+        return div;
+    }
+
+    function evaluarEnter(event) {
+        if (event.key === 'Enter') {
+            enviarMensaje();
+        }
+    }
+
+    function enviarSugerencia(textoFaq) {
+        document.getElementById('user-input').value = textoFaq;
+        enviarMensaje();
+    }
+
+    function limpiarChat() {
+        const contenedor = document.getElementById('chat-messages');
+        contenedor.innerHTML = `<div class="message bot">¡Historial borrado con éxito! ¿En qué otra cosa te puedo colaborar hoy?</div>`;
+    }
+</script>
+</body>
+</html>
+
