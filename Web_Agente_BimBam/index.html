@@ -79,7 +79,7 @@
 </div>
 
 <script>
-    // URL Corregida: Apunta directamente a tu endpoint en PythonAnywhere con Flask
+    // URL DEFINITIVA CORREGIDA: Ya no apunta a la empresa genérica, sino a tu API personal en la nube
     const URL_CHAT_OFICIAL = "https://pythonanywhere.com";
     
     async function enviarMensaje() {
@@ -102,12 +102,12 @@
         const indicadorCarga = mostrarIndicadorCarga();
 
         try {
-        // 2. Cambia API_URL aquí abajo también por el nuevo nombre:
-        const respuesta = await fetch(URL_CHAT_OFICIAL, { 
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ pregunta: texto })
-        });
+            // Comunicación con tu servidor Flask real
+            const respuesta = await fetch(URL_CHAT_OFICIAL, { 
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ pregunta: texto })
+            });
             const data = await respuesta.json();
             
             // 3. Remover animación e imprimir respuesta real de OpenRouter
