@@ -1,5 +1,5 @@
 [[redirects]]
   from = "/api-backend/*"
-  to = "https://pythonanywhere.com"
+  to = "https://angustvmb.pythonanywhere.com/preguntar"
   status = 200
   force = true
