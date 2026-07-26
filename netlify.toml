@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "/api-backend/*"
+  to = "https://pythonanywhere.com"
+  status = 200
+  force = true
