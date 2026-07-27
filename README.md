@@ -1,10 +1,37 @@
-# Web_Agente_BimBam
-Contiene el index.html con la configuración del chat. 
-# 🤖 BimBam Agent v2.0
+# 🤖 BimBam Buy Agent
 
-Asistente Inteligente basado en IA para atención al cliente de **BimBam Buy**.
+![Python](https://img.shields.io/badge/Python-3.11-blue)
+![Flask](https://img.shields.io/badge/Flask-3.x-black)
+![LangChain](https://img.shields.io/badge/LangChain-RAG-green)
+![Railway](https://img.shields.io/badge/Deploy-Railway-purple)
+![Netlify](https://img.shields.io/badge/Frontend-Netlify-00C7B7)
+![License](https://img.shields.io/badge/License-MIT-yellow)
 
-El proyecto implementa un sistema **RAG (Retrieval-Augmented Generation)** utilizando documentos PDF de la empresa para responder preguntas sobre garantías, devoluciones, tiempos de envío, métodos de pago, programa de afiliados y demás información corporativa.
+Asistente Inteligente basado en IA para BimBam Buy.
+
+<img width="720" height="480" alt="Imagen_Bienvedida" src="https://github.com/user-attachments/assets/76abfd6e-1d8b-4934-851e-9a7164b9b4d0" />
+
+
+Utiliza un sistema **RAG (Retrieval-Augmented Generation)** con **FAISS + LangChain + OpenRouter** para responder únicamente con información contenida en la documentación oficial de la empresa.
+
+---
+
+## 🌐 Demo
+
+### Frontend
+Ingresa Aquí para mirar el entorno.
+
+**https://agentebimbam.netlify.app/**
+
+<img width="988" height="692" alt="image" src="https://github.com/user-attachments/assets/165c9ffd-3301-4266-b32b-7c22b48de05a" />
+
+y se anexa video de evidencia del chat, 
+
+<video src="https://github.com/user-attachments/assets/c6924c1a-3f50-4156-a6c6-86444a3bc0c3" controls width="100%"></video>
+
+
+
+
 
 El sistema está compuesto por:
 
@@ -319,6 +346,10 @@ const URL_CHAT_OFICIAL =
 
 Railway
 
+
+<img width="1473" height="649" alt="imagen_del_despliegue" src="https://github.com/user-attachments/assets/e712fc15-72ea-4023-a63d-87989645dce6" />
+
+
 Comando de inicio
 
 ```text
@@ -416,6 +447,7 @@ Respuesta
 ---
 
 # Autor
+<img width="720" height="480" alt="ChatGPT Image 27 jul 2026, 01_33_07 p m" src="https://github.com/user-attachments/assets/60549e50-4f53-43a3-baa2-24b4c6333cda" />
 
 **EditionDP**
 
@@ -423,6 +455,7 @@ Proyecto desarrollado como solución de IA para **BimBam Buy**, integrando técn
 
 ---
 
-# Licencia
 
-Proyecto desarrollado con fines educativos y demostrativos.
+
+
+
