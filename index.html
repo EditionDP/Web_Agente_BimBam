@@ -21,6 +21,8 @@
         .refresh-btn { background: #ef4444; color: white; border: none; padding: 12px; border-radius: 10px; font-weight: 600; cursor: pointer; width: 100%; transition: background 0.2s; }
         .refresh-btn:hover { background: #dc2626; }
         .chat-area { width: 65%; display: flex; flex-direction: column; background: rgba(30, 41, 59, 0.4); }
+        .image-area{width:70%;display:flex;justify-content:center;align-items:center;overflow:hidden;padding:15px;}
+        .image-area img{width:90%;height:100%;object-fit:contain;}
         .chat-header { padding: 20px 25px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); display: flex; align-items: center; justify-content: space-between; }
         .chat-header h1 { color: #ffffff; font-size: 20px; }
         .status { display: flex; align-items: center; font-size: 12px; color: #4ade80; gap: 6px; }
@@ -44,6 +46,24 @@
             0%, 60%, 100% { transform: translateY(0); }
             30% { transform: translateY(-6px); }
         }
+        @media (max-width:900px){
+            .container{
+                flex-direction:column;
+                height:auto;
+            }
+            .sidebar{
+                width:100%;
+            }
+            .chat-area{
+                width:100%;
+                height:500px;
+            }
+            .image-area{
+                width:100%;
+                height:250px;
+            }
+
+}
     </style>
 </head>
 <body>
@@ -52,12 +72,14 @@
     <div class="sidebar">
         <div>
             <h2>BimBam Buy</h2>
-            <p>Asistente Inteligente de Garantías</p>
+            <p>Asistente Inteligente de BimBam Buy</p>
             <div class="faq-box">
                 <h3>Consultas Frecuentes</h3>
-                <div class="faq-item" onclick="enviarSugerencia('¿Cuantos dias se demora una garantia?')">¿Cuánto demora una garantía?</div>
+                <div class="faq-item" onclick="enviarSugerencia('¿Que debo tener en cuenta para una garantia?')">¿Que debo tener en cuenta para una garantia?</div>
                 <div class="faq-item" onclick="enviarSugerencia('¿Qué pasa si mi producto llegó dañado por el transporte?')">¿Producto dañado en tránsito?</div>
-                <div class="faq-item" onclick="enviarSugerencia('¿Cuáles son los tiempos de respuesta del equipo técnico?')">Tiempos de respuesta técnicos</div>
+                <div class="faq-item" onclick="enviarSugerencia('¿Cuáles son los medios de pago?')">Tiempos de respuesta técnicos</div>
+                <div class="faq-item" onclick="enviarSugerencia('¿Cuáles son las condiciones para aceptar una devolución?')">Condiciones de devolucion</div>
+                <div class="faq-item" onclick="enviarSugerencia('¿Quiero saber sobre las comiciones?')">¿Quiero saber sobre las comiciones?</div>
             </div>
         </div>
         <button class="refresh-btn" onclick="limpiarChat()">Limpiar Chat (Privacidad)</button>
@@ -69,17 +91,20 @@
             <div class="status" id="agent-status">Agente Activo</div>
         </div>
         <div class="messages" id="chat-messages">
-            <div class="message bot">¡Hola! Soy el asistente virtual de BimBam Buy. ¿En qué puedo ayudarte hoy respecto a tus productos o políticas de garantía?</div>
+            <div class="message bot">¡Hola! Soy el asistente virtual de BimBam Buy. ¿En qué puedo ayudarte hoy?</div>
         </div>
         <div class="input-area">
             <input type="text" id="user-input" placeholder="Escribe tu consulta aquí..." onkeypress="evaluarEnter(event)">
             <button id="send-btn" onclick="enviarMensaje()">Enviar</button>
         </div>
     </div>
+    <div class="image-area">
+        <img src="img/BimBamBuy.png" alt="BimBam Buy">
+    </div>
 </div>
 <script>
     // URL DEFINITIVA CORREGIDA: Apunta exactamente a tu servidor y endpoint en Flask
-    const URL_CHAT_OFICIAL = "/api-backend/preguntar";
+    const URL_CHAT_OFICIAL = "https://pythonanywhere.com";
     
     async function enviarMensaje() {
         const inputElement = document.getElementById('user-input');
