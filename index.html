@@ -107,7 +107,9 @@
     const API =
         "https://agente-bimbam-buy-production.up.railway.app/preguntar";
     
-    async function enviarMensaje() {
+    const API = "https://agente-bimbam-buy-production.up.railway.app/preguntar";
+
+async function enviarMensaje() {
 
     const inputElement = document.getElementById("user-input");
     const sendButton = document.getElementById("send-btn");
@@ -131,59 +133,42 @@
     try {
 
         const respuesta = await fetch(API, {
-
             method: "POST",
-
             headers: {
-
                 "Content-Type": "application/json"
-
             },
-
             body: JSON.stringify({
-
                 pregunta: texto
-
             })
-
         });
+
+        if (!respuesta.ok) {
+            throw new Error(`HTTP ${respuesta.status}`);
+        }
 
         const data = await respuesta.json();
 
         indicadorCarga.remove();
 
         agregarMensaje(
-
-            data?.data?.respuesta ||
-
-            "No fue posible obtener respuesta.",
-
+            data.data.respuesta,
             "bot"
-
         );
 
-    }
-
-    catch(error){
+    } catch(error){
 
         console.error(error);
 
         indicadorCarga.remove();
 
         agregarMensaje(
-
             "Lo siento, no pude conectarme con el servidor.",
-
             "bot"
-
         );
 
-    }
-
-    finally{
+    } finally{
 
         inputElement.disabled = false;
-
         sendButton.disabled = false;
 
         statusElement.innerText = "Agente Activo";
@@ -193,6 +178,74 @@
     }
 
 }
+    function agregarMensaje(texto, remitente) {
+
+    const contenedor = document.getElementById("chat-messages");
+
+    const div = document.createElement("div");
+
+    div.className = `message ${remitente}`;
+
+    div.innerText = texto;
+
+    contenedor.appendChild(div);
+
+    contenedor.scrollTop = contenedor.scrollHeight;
+
+}
+
+function mostrarIndicadorCarga() {
+
+    const contenedor = document.getElementById("chat-messages");
+
+    const div = document.createElement("div");
+
+    div.className = "message bot";
+
+    div.innerHTML = `
+        <div class="typing-indicator">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    `;
+
+    contenedor.appendChild(div);
+
+    contenedor.scrollTop = contenedor.scrollHeight;
+
+    return div;
+
+}
+
+function evaluarEnter(event){
+
+    if(event.key === "Enter"){
+        enviarMensaje();
+    }
+
+}
+
+function enviarSugerencia(texto){
+
+    document.getElementById("user-input").value = texto;
+
+    enviarMensaje();
+
+}
+
+function limpiarChat(){
+
+    const contenedor = document.getElementById("chat-messages");
+
+    contenedor.innerHTML =
+        `<div class="message bot">
+            ¡Historial borrado con éxito! ¿En qué puedo ayudarte ahora?
+        </div>`;
+
+}
+    
+    
 </script>
 </body>
 </html>
