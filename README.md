@@ -417,7 +417,7 @@ Respuesta
 
 # Autor
 
-**Carlos**
+**EditionDP**
 
 Proyecto desarrollado como solución de IA para **BimBam Buy**, integrando técnicas modernas de Retrieval-Augmented Generation (RAG), modelos de lenguaje de gran escala y una interfaz web para soporte inteligente al cliente.
 
