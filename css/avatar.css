@@ -1,0 +1,33 @@
+.sidebar-logo{
+
+    width:170px;
+
+    margin-bottom:20px;
+
+}
+
+.bot-message{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:12px;
+
+}
+
+.bot-avatar{
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:50%;
+
+    border:2px solid white;
+
+    box-shadow:0 3px 10px rgba(0,0,0,.15);
+
+    flex-shrink:0;
+
+}

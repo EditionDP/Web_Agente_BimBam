@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BimBam Buy - Centro de Soporte</title>
+    <link rel="shortcut icon" href="./img/avatarbot.webp" type="image/x-icon">
+    <link rel="stylesheet" href="./css/stils.css">
+    <link rel="stylesheet" href="./css/avatar.css">
+    <script defer src="./js/app.js"></script>
+    <script defer src="./js/bot.js"></script>
+</head>
+<body>
+
+<div class="container">
+
+
+    <aside class="sidebar">
+
+        <div>
+
+            <img
+                src="img/logo_bimbam.webp"
+                alt="BimBam Buy"
+                class="sidebar-logo">
+
+            <div class="faq-box">
+
+                <h3>Consultas Frecuentes</h3>
+
+                <div class="faq-item"
+                    onclick="enviarSugerencia('¿Qué debo tener en cuenta para una garantía?')">
+
+                    ¿Qué debo tener en cuenta para una garantía?
+
+                </div>
+
+                <div class="faq-item"
+                    onclick="enviarSugerencia('¿Qué pasa si mi producto llegó dañado por el transporte?')">
+
+                    ¿Producto dañado en tránsito?
+
+                </div>
+
+                <div class="faq-item"
+                    onclick="enviarSugerencia('¿Cuáles son las condiciones para aceptar una devolución?')">
+
+                    Condiciones de devolución
+
+                </div>
+
+                <div class="faq-item"
+                    onclick="enviarSugerencia('Quiero saber sobre las comisiones.')">
+
+                    Quiero saber sobre las comisiones
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div>
+
+            <button
+                class="refresh-btn"
+                onclick="limpiarChat()">
+
+                Limpiar Chat
+
+            </button>
+
+            <p
+                style="
+                    text-align:center;
+                    margin-top:18px;
+                    font-size:12px;
+                    color:#8a8a8a;
+                ">
+
+                BimBam Agent v2.0
+
+            </p>
+
+        </div>
+
+    </aside>
+
+
+    <main class="chat-area">
+
+        <div class="chat-header">
+
+            <div>
+
+                <h1>Centro de Soporte</h1>
+
+                <small
+                    style="
+                        color:#8a8a8a;
+                        font-size:13px;
+                    ">
+
+                    Asistencia basada en Inteligencia Artificial
+
+                </small>
+
+            </div>
+
+            <div
+                class="status"
+                id="agent-status">
+
+                Agente Activo
+
+            </div>
+
+        </div>
+
+        <div
+            class="messages"
+            id="chat-messages">
+
+            <div class="message bot">
+
+                <div class="bot-message">
+
+                    <img
+                        src="img/avatarbot.webp"
+                        class="bot-avatar">
+
+                    <div>
+
+                        ¡Hola! 👋
+
+                        <br><br>
+
+                        Soy el asistente inteligente de
+                        <strong>BimBam Buy</strong>.
+
+                        <br><br>
+
+                        Estoy listo para ayudarte con garantías,
+                        envíos, devoluciones, pagos,
+                        afiliados y demás consultas.
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="input-area">
+
+            <input
+
+                type="text"
+
+                id="user-input"
+
+                placeholder="Escribe tu consulta aquí..."
+
+                onkeypress="evaluarEnter(event)">
+
+            <button
+
+                id="send-btn"
+
+                onclick="enviarMensaje()">
+
+                Enviar
+
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <aside class="image-area">
+
+        <img
+
+            src="img/BimBamBuy.webp"
+
+            alt="Asistente BimBam Buy">
+            
+
+    </aside>
+
+
+    
+</div>
+
+
+</body>
+
+
+</html>
