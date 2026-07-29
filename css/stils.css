@@ -50,6 +50,12 @@ body {
         justify-content: space-between;
 }
 
+.sidebar img {
+        
+        border-radius: 20px;
+        
+}
+
 .sidebar h2 {
         color:#2F3552;
         font-size: 22px;
@@ -331,6 +337,13 @@ body {
                 height: auto;
                 object-fit: contain;
         }
+         .sidebar img {
+                width: 100%;
+                max-width: 380px;
+                height: auto;
+                object-fit: contain;
+        }
+
 
         .chat-area {
                 min-height: 500px;
