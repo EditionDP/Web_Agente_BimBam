@@ -451,6 +451,22 @@ OpenRouter
 
 Respuesta
 ```
+**Paleta de Colores**
+
+| Uso              | Color     |
+| ---------------- | --------- |
+| Fondo general    | `#FFF8F2` |
+| Sidebar          | `#FFF5EC` |
+| Tarjetas         | `#FFFDFB` |
+| Bot              | `#FFF0E2` |
+| Usuario          | `#FFB000` |
+| Botón principal  | `#E83D7A` |
+| Hover            | `#D22B67` |
+| Texto principal  | `#2F3552` |
+| Texto secundario | `#6E6E6E` |
+| Bordes           | `#F2E2D3` |
+
+
 
 ---
 
